@@ -1,13 +1,12 @@
 const axios = require('axios');
 const cheerio = require('cheerio');
 const fs = require('fs');
-
-const urlsite = 'http://www2.aneel.gov.br/scg/gd/gd_fonte_detalhe.asp?tipo=12&pagina=1'
+const { Parser } = require('json2csv');
 
 let dados = [];
 
-(async function(){
-    const {data} = await axios.get(urlsite);
+async function scrap(url){
+    const {data} = await axios.get(url);
     const $ = cheerio.load(data);
 
     for (i = 2; i < 1003; i++) {
@@ -46,7 +45,11 @@ let dados = [];
             inversores, 
             arranjo
         });
-        console.log(dados)
+        const json2csvParser = new Parser();
+        const csv = json2csvParser.parse(dados);
+        //console.log(dados);
+        fs.writeFileSync('./dados-aneel.csv', csv, 'utf8');
     }
+}
 
-})();
+module.exports = scrap;
