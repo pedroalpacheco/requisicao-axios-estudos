@@ -2,7 +2,8 @@ const axios = require('axios');
 const cheerio = require('cheerio');
 //const fs = require('fs');
 //const { Parser } = require('json2csv');
-const salvscsv = require('./salvacsv');
+const salvacsv = require('./salvacsv');
+const salvamongodb = require('./salvamongodb');
 
 let dados = [];
 
@@ -46,11 +47,8 @@ async function scrap(url){
             inversores, 
             arranjo
         });
-        /*const json2csvParser = new Parser();
-        const csv = json2csvParser.parse(dados);
-        //console.log(dados);
-        fs.writeFileSync('./dados-aneel.csv', csv, 'utf8');*/
-        salvscsv(dados);
+        
+        salvamongodb(dados);
 
     }
 }

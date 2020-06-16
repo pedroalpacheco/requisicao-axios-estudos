@@ -6,7 +6,7 @@ async function basemongo() {
         useUnifiedTopology: true
     })
         .then(result => {
-            console.log('Consultando número de documentos RASPADOS...');
+            console.log('Conectando base MONGODB...');
         })
         .catch(error => {
             console.log("DEU PROBLEMA!!>: " + error);
