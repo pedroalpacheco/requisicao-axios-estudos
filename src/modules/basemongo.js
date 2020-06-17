@@ -1,3 +1,4 @@
+//Conecta na base mongodb
 const mongoose = require('mongoose');
 
 async function basemongo() {

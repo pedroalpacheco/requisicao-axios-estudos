@@ -18,5 +18,5 @@ const dadosaneel = new mongoose.Schema({
     inversores: String,
     arranjo: String
   });
-  
+  console.log('Chamando esquema')
 module.exports = dadosaneel;

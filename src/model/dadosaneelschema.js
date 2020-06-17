@@ -1,9 +1,6 @@
-//Cria model
 const mongoose = require('mongoose');
 
-const adddadosaneel = mongoose.model(
-  'dadosaneel',
-  mongoose.Schema({
+const schema = new mongoose.Schema({
     distribuidora : String,
     codigo : String,
     titular : String,
@@ -20,8 +17,8 @@ const adddadosaneel = mongoose.model(
     modulos : String,
     inversores : String,
     arranjo: String
-  })
-);
-console.log('chamando MODEL')
-
-module.exports = adddadosaneel;
+ });
+ 
+ const dadosaneel = mongoose.model('dadosaneel', schema);
+ 
+ module.exports = dadosaneel;

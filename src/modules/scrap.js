@@ -1,9 +1,6 @@
 const axios = require('axios');
 const cheerio = require('cheerio');
-//const fs = require('fs');
-//const { Parser } = require('json2csv');
-const salvacsv = require('./salvacsv');
-const salvamongodb = require('./salvamongodb');
+const classmongo = require('./classmongo');
 
 let dados = [];
 
@@ -48,7 +45,7 @@ async function scrap(url){
             arranjo
         });
         
-        salvamongodb(dados);
+        classmongo.add(dados);
 
     }
 }

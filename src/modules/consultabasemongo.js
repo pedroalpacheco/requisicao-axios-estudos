@@ -1,12 +1,13 @@
 const basemongo = require('./basemongo');
-const dadosaneel = require('./dadosaneel');
+//const dadosaneel = require('./dadosaneel');
+const adddadosaneel = require('./adddadosaneel');
 const mongoose = require('mongoose');
 
 //Conecta na base
 basemongo();
 
 //Chama model
-const dadosmodel = dadosaneel;
+const dadosmodel = adddadosaneel();
 
 
 const consultabase = async ()=>{

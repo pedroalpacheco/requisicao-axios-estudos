@@ -1,9 +1,9 @@
-const mongoose = require('mongoose');
-const basemongo = require('./basemongo');
+//const mongoose = require('mongoose');
+//const basemongo = require('./basemongo');
 const adddadosaneel = require('./adddadosaneel');
 
 //Conecta na base
-basemongo();
+//basemongo();
 
 function salvandodados(dt) {
     const novoDado = new adddadosaneel({
