@@ -29,7 +29,7 @@ const classmongo = {
                 arranjo: dt.arranjo
             });
             await novodado.save();
-            await console.log(novodado);
+            //await console.log(dt);
         } catch (error) {
             console.log('Não foi salvar dados! => ' + error)
         }
@@ -45,7 +45,8 @@ const classmongo = {
         }
     },
     close: async () => {
-        mongoose.connection.close();
+        await console.log('Fechando conexao com MONGODB!')
+        await mongoose.connection.close();
     }
 };
 

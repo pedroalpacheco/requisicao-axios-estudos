@@ -2,10 +2,12 @@ const axios = require('axios');
 const cheerio = require('cheerio');
 const classmongo = require('./classmongo');
 
-let dados = [];
+let dados = {};
 
-async function scrap(url){
-    const {data} = await axios.get(url);
+async function scrap(url) {
+    await console.time('#TempoScraping');
+    await classmongo.start()
+    const { data } = await axios.get(url);
     const $ = cheerio.load(data);
 
     for (i = 2; i < 1003; i++) {
@@ -26,28 +28,32 @@ async function scrap(url){
         let inversores = $(`body > table:nth-child(4) > tbody > tr:nth-child(1) > td > table:nth-child(4) > tbody > tr:nth-child(${i}) > td:nth-child(15)`).text().trim();
         let arranjo = $(`body > table:nth-child(4) > tbody > tr:nth-child(1) > td > table:nth-child(4) > tbody > tr:nth-child(${i}) > td:nth-child(16)`).text().trim();
 
-        dados.push({
-            distribuidora, 
-            codigo, 
-            titular, 
-            classe, 
-            subgrupo, 
-            modalidade, 
-            credito, 
-            municipio, 
-            uf, 
-            cep, 
-            data, 
-            fonte, 
-            potencia, 
-            modulo, 
-            inversores, 
+        dados = {
+            distribuidora,
+            codigo,
+            titular,
+            classe,
+            subgrupo,
+            modalidade,
+            credito,
+            municipio,
+            uf,
+            cep,
+            data,
+            fonte,
+            potencia,
+            modulo,
+            inversores,
             arranjo
-        });
+        }
+
         
-        classmongo.add(dados);
+        await classmongo.add(dados);
+        //console.log(dados);
 
     }
+    await classmongo.close();
+    await console.timeEnd('#TempoScraping');
 }
 
 module.exports = scrap;

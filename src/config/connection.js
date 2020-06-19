@@ -3,9 +3,7 @@ const mongoose = require('mongoose');
 function connection(){
 
     // We need to difine the URL
-    const URL = process.env.URL || 'mongodb://localhost:27017/aneelsolar';
-    
-    
+    const URL = process.env.URL || 'mongodb://localhost:27017/dadosaneel';
     
     //Connection establishment
     mongoose.connect(URL, {
